@@ -2,44 +2,8 @@
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
 #include <random>
+#include "functions.h"
 
-//class for ball... could've been a struct instead but whatever it is what it is
-class ballForPong {
-    public:
-        float x,y,width,height,radius;
-        
-        //constructor for ball
-        ballForPong(float x,float y,float width,float height,float radius) {
-            this->x = x;
-            this->y = y;
-            this->width = width;
-            this->height = height;
-            this->radius = radius;
-        }
-};
-
-//function for generating either a negative or positive float value
-float randomMultiplication(float input) {
-    //generate a random number between 0 and 1. 
-    int number1 = rand() % 2; 
-
-    //if the number generated is 0, multiply the float input by -1. 
-    if (number1 == 0) {
-        input = input * -1.f; 
-    }
-    //else keep the float input the same
-    else {
-        input = input * 1.f; 
-    }
-    //print statement for debugging purposes
-    std::cout << "The number generated randomly is " << number1 << "\n";
-    return input; 
-}
-
-//function for reversing both the x and y offset of the ball 
-void reverseDirection(float& offset) {
-    offset = -offset;
-}
 
 //main function
 int main() {
@@ -57,8 +21,9 @@ int main() {
     sf::CircleShape ball(ball1.radius);
     //set position, initial offset of the ball to be random when the ball is first spawned
     ball.setPosition(ball1.x,ball1.y);
-    float ballOffsetX = randomMultiplication(0.05f); 
-    float ballOffsetY = 0.05f; 
+    //set ball speed
+    float ballOffsetX = randomMultiplication(0.10f); 
+    float ballOffsetY = 0.10f; 
     float ballRadius = ball.getRadius();
 
     //intialize scores
